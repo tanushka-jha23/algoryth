@@ -63,7 +63,7 @@ int* merge(int *p, int a, int c, int b){
     int i = a;
     int j = c;
     int k = 0;
-    while((k < (b - a) && i < c && j <= b)){
+    while((i < c && j <= b)){
             if(get(p, i) <= get(p, j)){
                 set(t, k, get(p, i));
                 i = i + 1;
