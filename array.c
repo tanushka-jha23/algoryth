@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+//array constructor
 int* Array(int n) {
     int* p = (int*)malloc((n + 1) * sizeof(int)); 
     int i;
@@ -11,20 +12,20 @@ int* Array(int n) {
     }
     return p;
 }
-
+//function to read an element of the array
 int get(int* a, int i) {
     return *(a + i + 1);
 }
-
+//modifying function of an array
 int set(int* a, int i, int v){
     *(a + i + 1) = v;
     return 0;
 }
-
+//delete array from memory
 int delete(int* a){
     free(a);
 }
-
+//method to print array
 int printArray(int* a) {
     int i;
     printf("[ ");
@@ -39,7 +40,7 @@ int printArray(int* a) {
     printf("]\n");
     return 0;
 }
-
+//bubble sort O[n^2]
 int  bubble_sort(int* a) {
     int j;
     for(j = 0; j < *a; j++){
@@ -56,13 +57,14 @@ int  bubble_sort(int* a) {
     return 0;
 }
 
+//merge algorithm O[n]
 int* merge(int *p, int a, int c, int b){
-    int* t = Array(*p);
-    int i = 0;
+    int* t = Array(b - a);
+    int i = a;
     int j = c;
     int k = 0;
-    while((k < *p && (i < c || j <= b)){
-            if(get(p, i) <= get(p, j){
+    while((k < (b - a) && i < c && j <= b)){
+            if(get(p, i) <= get(p, j)){
                 set(t, k, get(p, i));
                 i = i + 1;
             }
@@ -71,15 +73,24 @@ int* merge(int *p, int a, int c, int b){
                 set(t, k, get(p, j));
                 j = j + 1;
             }
-        }
         k = k + 1;
     }
-    return t;
-}
-
-int merger(int* p, int* t){
-    int i;
-    for(i = 0; i < *p; i++){
+    int r;
+    if(i > c){
+        r = j;
+    }
+    else{
+        r = i;
+    }
+    while(k < *t){
+        set(t, k, get(p, r));
+        r = r + 1;
+        k = k + 1;
+    }
+    i = 0;
+    for(i = a; i < b; i++){
         set(p, i, get(t, i));
     }
+    delete(t);
 }
+
