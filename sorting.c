@@ -76,7 +76,7 @@ int* merge(int *p, int a, int c, int b){
         k = k + 1;
     }
     int r;
-    if(i > c){
+    if(i >= c){
         r = j;
     }
     else{
@@ -92,5 +92,21 @@ int* merge(int *p, int a, int c, int b){
         set(p, i, get(t, i));
     }
     delete(t);
+}
+
+int main(){
+    int* p = Array(7);
+    set(p, 0, 5);
+    set(p, 1, 1);
+    set(p, 2, 2);
+    set(p, 3, 4);
+    set(p, 4, 3);
+    set(p, 5, 6);
+    set(p, 6, 7);
+    printArray(p);
+    merge(p, 0, 3, 6);
+    printArray(p);
+
+    return 0;
 }
 
