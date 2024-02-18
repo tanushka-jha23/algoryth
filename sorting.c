@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 //array constructor
 int* Array(int n) {
@@ -94,19 +93,4 @@ int* merge(int *p, int a, int c, int b){
     delete(t);
 }
 
-int main(){
-    int* p = Array(7);
-    set(p, 0, 5);
-    set(p, 1, 1);
-    set(p, 2, 2);
-    set(p, 3, 4);
-    set(p, 4, 3);
-    set(p, 5, 6);
-    set(p, 6, 7);
-    printArray(p);
-    merge(p, 0, 3, 6);
-    printArray(p);
-
-    return 0;
-}
 
