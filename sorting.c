@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 //array constructor
 int* Array(int n) {
@@ -92,5 +93,14 @@ int* merge(int *p, int a, int c, int b){
     }
     delete(t);
 }
-
+//merge sort O[nlogn]
+int merge_sort(int* p, int a, int b){
+    if(b - a == 1){
+        return 0;
+    }
+    int c = floor(get(p + a) + get(p + b)) / 2;
+    merge_sort(p, a, c);
+    merge_sort(p, c, b);
+    merge(p, a, c, b);
+}
 
