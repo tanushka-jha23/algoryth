@@ -58,21 +58,22 @@ int  bubble_sort(int* a) {
 }
 
 //merge algorithm O[n]
-int* merge(int *p, int a, int c, int b){
+int merge(int *p, int a, int c, int b){
     int* t = Array(b - a);
     int i = a;
     int j = c;
     int k = 0;
     while(i < c && j <= b){
-            if(get(p, i) <= get(p, j)){
-                set(t, k, get(p, i));
-                i = i + 1;
-            }
-    
-            else{
-                set(t, k, get(p, j));
-                j = j + 1;
-            }
+        if(get(p, i) <= get(p, j)){
+            set(t, k, get(p, i));
+            i = i + 1;
+        }
+
+        else{
+            set(t, k, get(p, j));
+            j = j + 1;
+        }
+
         k = k + 1;
     }
     int r;
@@ -92,15 +93,19 @@ int* merge(int *p, int a, int c, int b){
         set(p, i, get(t, i));
     }
     delete(t);
+
+    return 0;
 }
 //merge sort O[nlogn]
 int merge_sort(int* p, int a, int b){
     if(b - a == 1){
         return 0;
     }
-    int c = floor(get(p + a) + get(p + b)) / 2;
+    int c = (get(p, a) + get(p, b)) / 2;
     merge_sort(p, a, c);
     merge_sort(p, c, b);
     merge(p, a, c, b);
+
+    return 0;
 }
 
