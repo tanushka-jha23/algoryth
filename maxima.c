@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "array.c"
 
-//application of binary maxima
+//application of binary maxima using recursion
 int binary_maxima(int* p, int a, int b){
     int c = (a + b) / 2;
     if(get(p, c) > get(p, c + 1) && get(p, c) > get(p, c - 1)){
