@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 int* dynamic_array(){
     int* p = (int*)malloc(7);
@@ -15,17 +14,27 @@ int* dynamic_array(){
     return p;
 }
 
-int push(int* p, int v){
-    *(p + 1) = 1;
-    if(*(p + 1) > 5){
-        int* q = (int*)malloc((*p) * 2 + 2);
-        *q = (*p) * 2;
+int getp(int* p, int i){
+    return(*(p + i + 2));
+}
 
-        q
-    }
+int* push(int* p, int v){
+    *(p + 1) = *(p + 1) + 1;
+    if(*(p + 1) > *p){
+        int* q = malloc((*p) * 2 + 2);
+        *q = *p * 2;
+        *(q + 1) = *(p + 1);
+
         int i = 0;
-        while(i < *p){
-            
+        while(i < *(q + 1) - 1){
+            *(q + i + 2) = getp(p, i);
+
+            i = i + 1;
         }
+        *(q + i + 2) = v;
+
+        free(p);
+        int* p = q;
+        return p;
     }
 }
