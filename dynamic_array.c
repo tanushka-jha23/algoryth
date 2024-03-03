@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int* dynamic_array(){
-    int* p = (int*)malloc(7);
-    *p = 5;
+int* dynamic_array(int n){
+    int* p = malloc(n);
+    *p = n;
     *(p + 1) = -1;
     int i = 0;
     while(i < *p){
@@ -20,6 +20,7 @@ int getp(int* p, int i){
 
 int* push(int* p, int v){
     *(p + 1) = *(p + 1) + 1;
+    int* q;
     if(*(p + 1) > *p){
         int* q = malloc((*p) * 2 + 2);
         *q = *p * 2;
@@ -32,9 +33,24 @@ int* push(int* p, int v){
             i = i + 1;
         }
         *(q + i + 2) = v;
-
-        free(p);
-        int* p = q;
-        return p;
     }
+
+    return q;
+}
+
+int printArray(int* a) {
+    int i;
+    printf("[ ");
+    for(i = 0; i < *a; i++) {
+        
+        printf("%d, ", getp(a, i));
+    }
+    printf("]\n");
+    return 0;
+}
+
+int main(){
+    int* a = dynamic_array(5);
+    push(a, 3);
+    printArray(a);
 }
