@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 int* dynamic_array(){
-    int* p = (int*)malloc(5 * sizeof(int));
+    int* p = (int*)malloc(7 * sizeof(int));
     *p = 5;
     *(p + 1) = -1;
     int i = 0;
@@ -27,35 +27,33 @@ int* push(int* p, int v){
         *(q + 1) = *(p + 1);
 
         int i = 0;
-        while(i < (*(q + 1) - 1)){
+        while(i < (*(q + 1))){
             *(q + i + 2) = get(p, i);
 
             i = i + 1;
         }
         *(q + i + 2) = v;
+
+        return q;
     }
     else{
-        int* q = malloc(((*p) + 2) * sizeof(int));
-        *q = *p;
-        *(q + 1) = *(p + 1);
-        *(q + *(p + 1) + 2) = v;
-    }
+        *(p + *(p + 1) + 2) = v;
 
-    return q;
+        return p;
+    }
 }
 
 int printArray(int* a) {
     int i;
     printf("[ ");
-    for(i = 0; i < *(a + 1); i++) {
-        printf("%d, ", get(a, i));
+    for(i = 0; i < *(a); i++) {
+        if(i == *a - 1){
+            printf("%d", get(a, i));
+        }
+        else{
+            printf("%d, ", get(a, i));
+        }
     }
     printf("]\n");
     return 0;
-}
-
-int main(){
-    int* a = dynamic_array();
-    int* p = push(a, 3);
-    printArray(p);
 }
