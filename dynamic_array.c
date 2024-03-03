@@ -46,8 +46,8 @@ int* push(int* p, int v){
 int printArray(int* a) {
     int i;
     printf("[ ");
-    for(i = 0; i < *(a); i++) {
-        if(i == *a - 1){
+    for(i = 0; i < *(a + 1) + 1; i++) {
+        if(i == *(a + 1)){
             printf("%d", get(a, i));
         }
         else{
