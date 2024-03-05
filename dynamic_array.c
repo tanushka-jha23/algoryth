@@ -108,3 +108,22 @@ int main(){
     pop(a, 3);
     printArray(a);
 }
+
+
+//dynamic array using struct
+
+typedef struct dynamic_array{
+    int length;
+    int fill;
+    int* pointer;
+}Dynamic_array
+
+Dynamic_array* createDynamicArray(){
+    int* p = (int*)malloc(5 * sizeof(int));
+    Dynamic_array* d = (Dynamic_array*)malloc(sizeof(Dynamic_array));
+    (*d).length = 5;
+    (*d).fill = -1;
+    (*d).pointer = p;
+
+    return d;
+}
