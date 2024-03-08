@@ -73,28 +73,13 @@ int pop(Dynamic_array* d, int i){
 }
 
 int insert(Dynamic_array* d, int i, int v){
-    (*d). fill = (*d).fill + 1;
-    if((*d).fill >= (*d).length){
-        (*d).length = (*d).length * 2;
-        int* q = malloc(((*d).length) * sizeof(int));
-        int j;
-        for(j = 0; j < i; j ++){
-            *(q + j) = *((*d).pointer + j);;
-        }
-        for(; j < (*d).fill ; j++){
-            *(q + j + 1) = *((*d).pointer + j);
-        }
-        *(q + i) = v;
-        (*d).pointer = q;
+    push(d, 0);
+    int j;
+    for(j = (*d).fill - 1; j >= i; j--){
+        *((*d).pointer + j + 1) = *((*d).pointer + j);
     }
+    *((*d).pointer + i) = v;
     
-   else{
-        int j;
-        for(j = (*d).fill - 1; j >= i; j--){
-            *((*d).pointer + j + 1) = *((*d).pointer + j);
-        }
-        *((*d).pointer + i) = v;
-    }
 
 }
 
@@ -124,8 +109,9 @@ int main(){
     push(a, -15);
     push(a, 17);
     push(a, 23);
-    push(a, 100);
+    push(a, 14);
     insert(a, 4, 15);
+
 
     printArray(a);
     printf("\n");
