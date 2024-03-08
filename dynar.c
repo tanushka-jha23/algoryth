@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 #include <stdlib.h>
 
 //dynamic array using struct
@@ -73,6 +72,32 @@ int pop(Dynamic_array* d, int i){
     return a;
 }
 
+int insert(Dynamic_array* d, int i, int v){
+    (*d). fill = (*d).fill + 1;
+    if((*d).fill >= (*d).length){
+        (*d).length = (*d).length * 2;
+        int* q = malloc(((*d).length) * sizeof(int));
+        int j;
+        for(j = 0; j < i; j ++){
+            *(q + j) = *((*d).pointer + j);;
+        }
+        for(; j < (*d).fill ; j++){
+            *(q + j + 1) = *((*d).pointer + j);
+        }
+        *(q + i) = v;
+        (*d).pointer = q;
+    }
+    
+   else{
+        int j;
+        for(j = (*d).fill - 1; j >= i; j--){
+            *((*d).pointer + j + 1) = *((*d).pointer + j);
+        }
+        *((*d).pointer + i) = v;
+    }
+
+}
+
 int printArray(Dynamic_array* d){
     printf("[ ");
     int j = 0;
@@ -99,11 +124,10 @@ int main(){
     push(a, -15);
     push(a, 17);
     push(a, 23);
-    push(a, -12);
-    push(a, 10);
-    int f = pop(a, 0);
+    push(a, 100);
+    insert(a, 4, 15);
 
     printArray(a);
-    printf("%d\n", f);
+    printf("\n");
 
 }
