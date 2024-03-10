@@ -13,13 +13,13 @@ typedef struct linkedlist{
 }LinkedList;
 
 LinkedList* createLinkedList(){
-    LinkedList* a = malloc(sizeof(LinkedList));
+    LinkedList* a = (LinkedList*)malloc(sizeof(LinkedList));
     (*a).size = 0;
     return a;
 }
 
 int push(LinkedList* a, int v){
-    Node* p = malloc(sizeof(Node));
+    Node* p = (Node*)malloc(sizeof(Node));
     (*p).value = v;
     
     if((*a).size == 0){
