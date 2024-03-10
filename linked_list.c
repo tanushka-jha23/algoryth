@@ -51,6 +51,16 @@ int pop(LinkedList* a, int i){
     return t;
 }
 
+int get(LinkedList* a, int i){
+    int j;
+    Node* n = (*a).head;
+    for(j = 0; j < i; j++){
+        n = (*n).next;
+    }
+    
+    return (*n).value;
+}
+
 int printList(LinkedList* a){
     printf("[");
     int j = 1;
@@ -81,7 +91,8 @@ int main(){
     push(a, 55);
 
     int p = pop(a, 2);
-    printf("%d\n", p);
+    int d = get(a, 2);
+    printf("%d, %d \n", p, d);
     printList(a);
 }
 
