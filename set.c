@@ -5,7 +5,7 @@
 typedef struct set{
     Dynamic_array* array;
 }Set;
-
+//constructor
 Set* createSet(){
     Set* s = (Set*)malloc(sizeof(Set));
     (*s).array = createDynamicArray();
@@ -14,7 +14,7 @@ Set* createSet(){
 
 int checkMember(Set* a, int v){
     int i;
-    for(i = 0; i < (*(*a).array).fill; i++){
+    for(i = 0; i <= (*(*a).array).fill; i++){
         if(*((*(*a).array).pointer + i) == v){
             return 1;
         }
@@ -23,13 +23,7 @@ int checkMember(Set* a, int v){
 }
 
 int add(Set* a, int v){
-    int i;
-    int number = -1;
-    for(i = 0; i < (*(*a).array).fill; i++){
-        if(*((*(*a).array).pointer + i) == v){
-            number = 0;
-        }
-    }
+    int number = checkMember(a, v);
     if(number == -1){
         push((*a).array, v);
     }
@@ -66,6 +60,11 @@ int main(){
     add(p, 2);
     add(p, 5);
     add(p, 0);
+    int a = checkMember(p, 0);
     printSet(p);
-    printf("\n");
+    discard(p, 5);
+    printSet(p);
+    printf("%d\n", a);
+
+    return 0;
 }
