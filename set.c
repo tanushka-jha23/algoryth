@@ -8,13 +8,13 @@ typedef struct set{
 
 Set* createSet(){
     Set* s = (Set*)malloc(sizeof(Set));
-
+    (*s).array = createDynamicArray();
     return s;
 }
 
 int checkMember(Set* a, int v){
     int i;
-    for(i = 0; i < (*(*a).array).length; i++){
+    for(i = 0; i < (*(*a).array).fill; i++){
         if(*((*(*a).array).pointer + i) == v){
             return 1;
         }
@@ -25,7 +25,7 @@ int checkMember(Set* a, int v){
 int add(Set* a, int v){
     int i;
     int number = -1;
-    for(i = 0; i < (*(*a).array).length; i++){
+    for(i = 0; i < (*(*a).array).fill; i++){
         if(*((*(*a).array).pointer + i) == v){
             number = 0;
         }
@@ -39,7 +39,7 @@ int add(Set* a, int v){
 
 int discard(Set* a, int v){
     int i;
-    for(i = 0; i < (*(*a).array).length; i++){
+    for(i = 0; i < (*(*a).array).fill; i++){
         if(*((*(*a).array).pointer + i) == v){
             pop((*a).array, i);
         }
@@ -50,8 +50,13 @@ int discard(Set* a, int v){
 int printSet(Set* a){
     printf("{");
     int i;
-    for(i = 0; i < (*(*a).array).length; i++){
-        printf("%d ,", *((*(*a).array).pointer + i));
+    for(i = 0; i <= (*(*a).array).fill; i++){
+        if(i == (*(*a).array).fill){
+            printf("%d", *((*(*a).array).pointer + i));
+        }
+        else{
+            printf("%d ,", *((*(*a).array).pointer + i));
+        }
     }
     printf("}");
 }
@@ -59,4 +64,8 @@ int printSet(Set* a){
 int main(){
     Set* p = createSet();
     add(p, 2);
+    add(p, 5);
+    add(p, 0);
+    printSet(p);
+    printf("\n");
 }
