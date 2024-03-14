@@ -79,8 +79,6 @@ int insert(Dynamic_array* d, int i, int v){
         *((*d).pointer + j + 1) = *((*d).pointer + j);
     }
     *((*d).pointer + i) = v;
-    
-
 }
 
 int printArray(Dynamic_array* d){
@@ -99,21 +97,4 @@ int printArray(Dynamic_array* d){
         
     printf("]");
     return 0;
-}
-
-
-int main(){
-    
-    Dynamic_array* a = createDynamicArray();
-    push(a, 12);
-    push(a, -15);
-    push(a, 17);
-    push(a, 23);
-    push(a, 14);
-    insert(a, 4, 15);
-
-
-    printArray(a);
-    printf("\n");
-
 }

@@ -8,7 +8,7 @@ typedef struct iterator{
     int* p;
 }Iterator;
 
-Iterator* createIterator(Dynamic_array* d){
+Iterator* constructIterator(Dynamic_array* d){
     Iterator* t = (Iterator*)malloc(sizeof(Iterator));
     int* a = (int*)malloc((*d).fill*sizeof(int));
     int i;
@@ -32,18 +32,4 @@ int consume(Iterator* a){
         (*a).currIndex = (*a).currIndex + 1;
     }
     return v;
-}
-
-
-int main(){
-    Dynamic_array* p = createDynamicArray();
-    push(p, 2);
-    push(p, 5);
-    push(p, -16);
-    push(p, 19);
-    Iterator* hello = createIterator(p);
-    
-    int t = consume(hello);
-    int s = consume(hello);
-    printf("%d\n", s);
 }

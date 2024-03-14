@@ -92,7 +92,7 @@ int main(){
 
     int p = pop(a, 2);
     int d = get(a, 2);
-    printf("%d, %d \n", p, d);
+    printf("%d, g%d \n", p, d);
     printList(a);
 }
 
