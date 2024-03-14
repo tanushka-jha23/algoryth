@@ -24,7 +24,8 @@ Iterator* createIterator(Dynamic_array* d){
 
 int consume(Iterator* a){
     int v = *((*a).p + (*a).currIndex);
-    if((*a).currIndex == (*a).size - 1){
+    if((*a).currIndex == (*a).size){
+        free((*a).p);
         free(a);
     }
     else{
@@ -36,12 +37,13 @@ int consume(Iterator* a){
 
 int main(){
     Dynamic_array* p = createDynamicArray();
-    Iterator* hello = createIterator(p);
     push(p, 2);
     push(p, 5);
     push(p, -16);
     push(p, 19);
-
+    Iterator* hello = createIterator(p);
+    
     int t = consume(hello);
-    printf("%d", t);
+    int s = consume(hello);
+    printf("%d\n", s);
 }
