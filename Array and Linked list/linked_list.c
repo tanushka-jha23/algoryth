@@ -65,8 +65,8 @@ int printList(LinkedList* a){
     printf("[");
     int j = 1;
     Node* n = (*a).head;
-    while(j < (*a).size){
-        if(j == (*a).size - 1){
+    while(j <= (*a).size){
+        if(j == (*a).size){
             printf("%d", (*n).value);
         }
         else{
@@ -82,17 +82,4 @@ int printList(LinkedList* a){
     return 0;
 }
 
-int main(){
-    LinkedList* a = createLinkedList();
-    push(a, 3);
-    push(a, -5);
-    push(a, 10);
-    push(a, 16);
-    push(a, 55);
-
-    int p = pop(a, 2);
-    int d = get(a, 2);
-    printf("%d, g%d \n", p, d);
-    printList(a);
-}
 

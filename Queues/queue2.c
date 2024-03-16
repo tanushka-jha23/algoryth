@@ -8,7 +8,7 @@ typedef struct queue{
 
 Queue2* consQueue(){
     LinkedList* l = createLinkedList();
-    Queue2* q = (*Queue2)malloc(sizeof(Queue2));
+    Queue2* q = (Queue2*)malloc(sizeof(Queue2));
     q->list = l;
 
     return q;
@@ -30,8 +30,7 @@ int main(){
     Queue2* q = consQueue();
     enqueue(q, 5);
     enqueue(q, -10);
-    printList(q->list);
-    dequeue(q);
+    enqueue(q, 15);
     printList(q->list);
 
     return 0;

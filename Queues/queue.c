@@ -24,15 +24,3 @@ int dequeue(Queue* a){
 
     return 0;
 }
-
-int main(){
-    Queue* q = constructQueue();
-    printArray(q->Dynamic_array);
-    enqueue(q, 5);
-    enqueue(q, -10);
-    printArray(q->Dynamic_array);
-    dequeue(q);
-    printArray(q->Dynamic_array);
-
-    return 0;
-}
