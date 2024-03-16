@@ -6,7 +6,8 @@ typedef struct queue{
     Dynamic_array* Dynamic_array;
 }Queue;
 
-Queue* constructQueue(Dynamic_array* d){
+Queue* constructQueue(){
+    Dynamic_array* d = createDynamicArray();
     Queue* a = (Queue*)malloc(sizeof(Queue));
     (*a).Dynamic_array = d;
     return a;
@@ -25,15 +26,10 @@ int dequeue(Queue* a){
 }
 
 int main(){
-    Dynamic_array* d = createDynamicArray();
-    push(d, 1);
-    push(d, -5);
-    push(d, 12);
-    push(d, -3);
-    push(d, 10);
-    Queue* q = constructQueue(d);
+    Queue* q = constructQueue();
     printArray(q->Dynamic_array);
     enqueue(q, 5);
+    enqueue(q, -10);
     printArray(q->Dynamic_array);
     dequeue(q);
     printArray(q->Dynamic_array);
