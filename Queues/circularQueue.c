@@ -28,8 +28,9 @@ int resize(Queue* q, int s){
     for(i = q->front + 1; i <= (q->front + q-> size); i++){
         *(t + i - q->front - 1) = *(q->pointer + i%q->size);
     }
+    free(q->pointer); 
     q->pointer = t;
-    q->back = q->back + q->size - 1;
+    q->back = q->size - 1;
     q->front = -1;
     q->size = q->size * 2;
 }
