@@ -34,7 +34,7 @@ int resize(Queue* q, int s){
     q->size = q->size * 2;
 }
 
-int push(Queue* q, int v){
+int enqueue(Queue* q, int v){
     q->fill += 1;
     if(q->fill >= q->size){
         resize(q, q->size * 2);
@@ -45,7 +45,7 @@ int push(Queue* q, int v){
     return 0;
 }
 
-int pop(Queue* q){
+int dequeue(Queue* q){
     q->fill = q->fill - 1;
     if(q->fill < q->size/2 && q->size/2 > 5){
         resize(q, q->size/2);
