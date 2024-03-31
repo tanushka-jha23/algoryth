@@ -69,6 +69,8 @@ int main(){
     enqueue(p, 10);
     enqueue(p, 15);
     enqueue(p, -23);
+    dequeue(p);
+    int a = dequeue(p);
     printArray(p->array);
     printf("%d", a);
     printf("\n");
