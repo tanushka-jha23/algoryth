@@ -40,23 +40,23 @@ int dequeue(Priq* q){
     int t = pop(q->array, q->array->fill);
     int k = 0;
     while((2*k + 1) <= q->array->fill){
-        int* p;
+        int p;
         if(2*k + 2 > q->array->fill && *(q->array->pointer + 2*k+1) > *(q->array->pointer + k)){
             swap(q->array->pointer + k, q->array->pointer + 2*k+1);
-            *p = 2*k + 1;
+            p = 2*k + 1;
         }
         else if(*(q->array->pointer + k) < (*(q->array->pointer + 2*k+1)) ||*(q->array->pointer + k) < *(q->array->pointer+ 2*k+2)){
             if(*(q->array->pointer + 2*k+1) > *(q->array->pointer + 2*k+2)){
                 swap(q->array->pointer + k, q->array->pointer + 2*k+1);
-                *p = 2*k + 1;
+                p = 2*k + 1;
             }
             else if(*(q->array->pointer + 2*k+1) < *(q->array->pointer + 2*k+2)){
                 swap(q->array->pointer + k, q->array->pointer + 2*k+2);
-                *p = 2*k + 2;
+                p = 2*k + 2;
             }
         }
 
-        k = *p; 
+        k = p; 
     }
     return t;
 }
