@@ -14,9 +14,9 @@ Priq* createPq(){
     return q;
 }
 int swap(int* a, int* b){
-    int* t = a;
+    int t = *a;
     *a = *b;
-    *b = *t;
+    *b = t;
 
     return 0;
 }
@@ -39,8 +39,8 @@ int dequeue(Priq* q){
     swap(q->array->pointer, q->array->pointer + q->array->fill);
     int t = pop(q->array, q->array->fill);
     int k = 0;
-    int* p;
     while((2*k + 1) <= q->array->fill){
+        int* p;
         if(2*k + 2 > q->array->fill && *(q->array->pointer + 2*k+1) > *(q->array->pointer + k)){
             swap(q->array->pointer + k, q->array->pointer + 2*k+1);
             *p = 2*k + 1;
