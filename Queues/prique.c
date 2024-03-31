@@ -41,18 +41,24 @@ int dequeue(Priq* q){
     int k = 0;
     while((2*k + 1) <= q->array->fill){
         int p;
-        if(2*k + 2 > q->array->fill && *(q->array->pointer + 2*k+1) > *(q->array->pointer + k)){
-            swap(q->array->pointer + k, q->array->pointer + 2*k+1);
-            p = 2*k + 1;
-        }
-        else if(*(q->array->pointer + k) < (*(q->array->pointer + 2*k+1)) ||*(q->array->pointer + k) < *(q->array->pointer+ 2*k+2)){
-            if(*(q->array->pointer + 2*k+1) > *(q->array->pointer + 2*k+2)){
+        if(2*k + 2 > q->array->fill){
+            if(q->array->pointer + 2*k+1 > q->array->pointer + k){
                 swap(q->array->pointer + k, q->array->pointer + 2*k+1);
                 p = 2*k + 1;
             }
+        }
+        else{
+            if(*(q->array->pointer + 2*k+1) > *(q->array->pointer + 2*k+2)){
+                if(q->array->pointer + 2*k+1 > q->array->pointer + k){
+                    swap(q->array->pointer + k, q->array->pointer + 2*k+1);
+                    p = 2*k + 1;
+                }
+            }
             else if(*(q->array->pointer + 2*k+1) < *(q->array->pointer + 2*k+2)){
-                swap(q->array->pointer + k, q->array->pointer + 2*k+2);
-                p = 2*k + 2;
+                if(q->array->pointer + 2*k+2 > q->array->pointer + k){
+                    swap(q->array->pointer + k, q->array->pointer + 2*k+2);
+                    p = 2*k + 2;
+                }
             }
         }
 
@@ -68,8 +74,9 @@ int main(){
     enqueue(p, 5);
     enqueue(p, 0);
     enqueue(p, 10);
-    dequeue(p);
+    int a = dequeue(p);
     printArray(p->array);
+    printf("%d", a);
     printf("\n");
 
     return 0;
