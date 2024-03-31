@@ -77,7 +77,6 @@ int popBack(Deque* d){
     return p;
 }
 
-
 int prettyPrint(Deque* d){
     printf("[");
     int i;
