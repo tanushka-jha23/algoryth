@@ -60,24 +60,3 @@ int dequeue(Priq* q){
     return t;
 }
 
-int main(){
-    Priq* p = createPq();
-    enqueue(p, -100);
-    enqueue(p, 9);
-    enqueue(p, 5);
-    enqueue(p, 0);
-    enqueue(p, 10);
-    enqueue(p, 15);
-    enqueue(p, -23);
-    dequeue(p);
-    dequeue(p);
-    dequeue(p);
-    dequeue(p);
-    
-    int a = dequeue(p);
-    printArray(p->array);
-    printf("%d", a);
-    printf("\n");
-
-    return 0;
-}
