@@ -67,7 +67,6 @@ int main(){
     int t = dequeue(p);
     printf("%d\n", t);
     printArray(p->array);
-    printf("\n");
 
     return 0;
 }
