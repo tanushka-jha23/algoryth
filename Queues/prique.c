@@ -39,32 +39,33 @@ int dequeue(Priq* q){
     swap(q->array->pointer, q->array->pointer + q->array->fill);
     int t = pop(q->array, q->array->fill);
     int k = 0;
-    while((2*k + 1) <= q->array->fill){
-        int p = *(q->array->pointer);
-        if(2*k+1 < q->array->fill+1 && p < *(q->array->pointer + 2*k+1)){
-            p = *(q->array->pointer + 2*k+1);
-            k = 2*k + 1;
+    while(k <= q->array->fill){
+        int p = k;
+        if(2*k+2 < q->array->fill+1 && *(q->array->pointer + p) < *(q->array->pointer + 2*k+2)){
+            p = 2*k + 2;
         }
-        if(2*k+2 < q->array->fill+1 && p < *(q->array->pointer + 2*k+2)){
-            p = *(q->array->pointer + 2*k+2);
-            k = 2*k + 2;
+        if(2*k+1 < q->array->fill+1 && *(q->array->pointer + p) < *(q->array->pointer + 2*k+1)){
+            p = 2*k + 1;
         }
-        else{
+        if(p == k){
             break;
-        } 
+        }
+        swap(q->array->pointer + p, q->array->pointer + k);
+        k = p;
     } 
     return t;
 }
 
 int main(){
     Priq* p = createPq();
-    enqueue(p, 2);
-    enqueue(p, -7);
-    enqueue(p, 100);
+    enqueue(p, 1);
+    enqueue(p, 7);
+    enqueue(p, 3);
     printArray(p->array);
     printf("\n");
     dequeue(p);
-    dequeue(p);
+    int t = dequeue(p);
+    printf("%d\n", t);
     printArray(p->array);
     printf("\n");
 
