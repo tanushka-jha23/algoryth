@@ -4,7 +4,7 @@
 
 typedef struct string{
     int length;
-    char* str;
+    char* character;
 }String;
 
 String* createString(char* c){
@@ -18,8 +18,7 @@ String* createString(char* c){
     for(i = 0; i < s->length; i++){
         *(t + i) = *(c + i);
     }
-    s->str = t;
+    s->character= t;
 
     return s;
 }
-
