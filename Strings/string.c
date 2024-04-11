@@ -18,7 +18,22 @@ String* createString(char* c){
     for(i = 0; i < s->length; i++){
         *(t + i) = *(c + i);
     }
-    s->character= t;
+    s->character = t;
 
     return s;
+}
+
+int equalStrings(String* a, String* b){
+    if(a->length != b->length){
+        return 0;
+    }
+    else{
+        int i;
+        for(i = 0; i < a->length; i++){
+            if(*(a->character + i) != *(b->character + i)){
+                return 0;
+            }
+        }
+        return 1;
+    }
 }
