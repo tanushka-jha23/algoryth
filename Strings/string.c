@@ -28,9 +28,9 @@ int equalStrings(String* a, String* b){
         return 0;
     }
     else{
-        int i;
-        for(i = 0; i < a->length; i++){
-            if(*(a->character + i) != *(b->character + i)){
+        int j;
+        for(j = 0; j < a->length; j++){
+            if(*(a->character + j) != *(b->character + j)){
                 return 0;
             }
         }
