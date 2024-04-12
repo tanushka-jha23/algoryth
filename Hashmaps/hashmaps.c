@@ -38,12 +38,36 @@ kvPair* entry(Hashmap* h, String* s){
     kvPair* k = *(h->array + fnv1a_hash(s));
     while(k != NULL){
         if(equalStrings(k->key, s)){
-            return k;
+            kvPair* p = k;
         }
         else{
             k = k->next;
         }
     }
+    return p;
+}
+
+int insert(Hashmap* h, String* s, int v){
+    if(entry(h, s) == NULL){
+        kvPair* k = (kvPair*)malloc(sizeof(kvPair));
+        k->key = s;
+        k->value = v;
+        *(h->array + fnv1a_hash(s)) = k;
+    }
+    else{
+        kvPair* kv = entry(h, s);
+        kv->key = v;
+    }
+    return 0;
+}
+
+int discard(Hashmap* h, String* s){
+    kvPair* kv = *(h->array + fnv1a_hash(s));
+
+    while(kv != NULL && !equalStrings(kv->key, s)){
+        kv = kv->next;
+    }
+    kv->value 
 }
 
 
