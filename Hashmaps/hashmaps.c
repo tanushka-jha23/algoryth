@@ -38,13 +38,13 @@ kvPair* entry(Hashmap* h, String* s){
     kvPair* k = *(h->array + fnv1a_hash(s));
     while(k != NULL){
         if(equalStrings(k->key, s)){
-            kvPair* p = k;
+            return k;
         }
         else{
             k = k->next;
         }
     }
-    return p;
+
 }
 
 int insert(Hashmap* h, String* s, int v){
@@ -52,22 +52,43 @@ int insert(Hashmap* h, String* s, int v){
         kvPair* k = (kvPair*)malloc(sizeof(kvPair));
         k->key = s;
         k->value = v;
+        k->next = *(h->array + fnv1a_hash(s));//
         *(h->array + fnv1a_hash(s)) = k;
     }
     else{
         kvPair* kv = entry(h, s);
-        kv->key = v;
+        kv->value = v;
     }
     return 0;
 }
 
 int discard(Hashmap* h, String* s){
     kvPair* kv = *(h->array + fnv1a_hash(s));
-
-    while(kv != NULL && !equalStrings(kv->key, s)){
-        kv = kv->next;
+    if(kv == NULL){
+        return -1;
     }
-    kv->value 
+    else if(equalStrings(kv->key, s)){
+        int v = kv->value;
+        free(kv);
+        return v;
+    }
+    else{   //0, 1, 2
+        while(kv->next != NULL && !equalStrings(kv->next->key, s)){ 
+            kv = kv->next; //second node address
+        }
+        if(kv->next != NULL){
+            kvPair* t = kv->next;
+            kv->next = kv->next->next;
+            int v = kv->next->value;
+            free(t);
+            return v;
+        } 
+        else{
+            return -1;
+        }
+    }
 }
+
+
 
 
