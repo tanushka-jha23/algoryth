@@ -36,15 +36,10 @@ Hashmap* createhashmap(){
 
 kvPair* entry(Hashmap* h, String* s){
     kvPair* k = *(h->array + fnv1a_hash(s));
-    while(k != NULL){
-        if(equalStrings(k->key, s)){
-            return k;
-        }
-        else{
-            k = k->next;
-        }
+    while(k != NULL && !equalStrings(k->key, s)){
+        k = k->next;
     }
-
+    return k;
 }
 
 int insert(Hashmap* h, String* s, int v){
