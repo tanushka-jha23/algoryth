@@ -52,7 +52,7 @@ int insert(Hashmap* h, String* s, int v){
         kvPair* k = (kvPair*)malloc(sizeof(kvPair));
         k->key = s;
         k->value = v;
-        k->next = *(h->array + fnv1a_hash(s));//
+        k->next = *(h->array + fnv1a_hash(s));
         *(h->array + fnv1a_hash(s)) = k;
     }
     else{
@@ -72,14 +72,14 @@ int discard(Hashmap* h, String* s){
         free(kv);
         return v;
     }
-    else{   //0, 1, 2
+    else{  
         while(kv->next != NULL && !equalStrings(kv->next->key, s)){ 
             kv = kv->next; //second node address
         }
         if(kv->next != NULL){
             kvPair* t = kv->next;
-            kv->next = kv->next->next;
             int v = kv->next->value;
+            kv->next = kv->next->next;
             free(t);
             return v;
         } 
