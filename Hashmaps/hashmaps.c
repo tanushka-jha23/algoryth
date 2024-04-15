@@ -43,11 +43,22 @@ kvPair* entry(Hashmap* h, String* s){
 }
 
 int insert(Hashmap* h, String* s, int v){
-    if(entry(h, s) == NULL){
+    kvPair* t = *(h->array + fnv1a_hash(s));
+    if(entry(h, s) == NULL && t == NULL){
         kvPair* k = (kvPair*)malloc(sizeof(kvPair));
         k->key = s;
         k->value = v;
         k->next = NULL;
+        *(h->array + fnv1a_hash(s)) = k;
+    }
+    else if(entry(h, s) == NULL && t != NULL){
+        kvPair* k = (kvPair*)malloc(sizeof(kvPair));
+        k->key = s;
+        k->value = v;
+        while(t->next != NULL){
+            t = t->next;
+        }
+        k->next = t;
         *(h->array + fnv1a_hash(s)) = k;
     }
     else{
@@ -83,6 +94,21 @@ int discard(Hashmap* h, String* s){
     }
 }
 
+
+int main(){
+    String* a = createString("aA");
+    String* b = createString("world");
+    String* c = createString("BB");
+
+    Hashmap* h = createhashmap();
+    insert(h, a, 12);
+    insert(h, b, 20);
+    insert(h, c, 2027);
+
+    
+    printf("%d\n", discard(h, a));
+
+}
 
 
 
