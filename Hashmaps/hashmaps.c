@@ -58,8 +58,8 @@ int insert(Hashmap* h, String* s, int v){
         while(t->next != NULL){
             t = t->next;
         }
-        k->next = t;
-        *(h->array + fnv1a_hash(s)) = k;
+        k->next = NULL;
+        t->next = k;
     }
     else{
         kvPair* kv = entry(h, s);
@@ -80,34 +80,27 @@ int discard(Hashmap* h, String* s){
     }
     else{
         kvPair* kvp = *(h->array + fnv1a_hash(s));
-        while(kvp->next != NULL){
-            if(equalStrings(kvp->next->key, s)){
-                break;
-            }
+        if(entry(h, s) == kvp){
+            kvPair* t = entry(h, s);
+            int v = t->value;
             kvp = kvp->next;
+            free(t);
+            return v;
         }
-        kvPair* t = kvp->next;
-        int v = t->value;
-        kvp->next = kvp->next->next;
-        free(t);
-        return v;
+        else{
+            while(kvp->next != NULL){
+                if(equalStrings(kvp->next->key, s)){
+                    break;
+                }
+                kvp = kvp->next;
+            }
+            kvPair* t = kvp->next;
+            int v = t->value;
+            kvp->next = kvp->next->next;
+            free(t);
+            return v;
+        }
     }
-}
-
-
-int main(){
-    String* a = createString("aA");
-    String* b = createString("world");
-    String* c = createString("BB");
-
-    Hashmap* h = createhashmap();
-    insert(h, a, 12);
-    insert(h, b, 20);
-    insert(h, c, 2027);
-
-    
-    printf("%d\n", discard(h, a));
-
 }
 
 
