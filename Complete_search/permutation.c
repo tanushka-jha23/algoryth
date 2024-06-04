@@ -19,20 +19,3 @@ void permutation(Dynamic_array* array, Dynamic_array* aux, int n, Dynamic_array*
   return;
 }
 
-int main(){
-  Dynamic_array* array = createDynamicArray();
-  push(array, 6);
-  push(array, 2);
-  push(array, 9);
-  Dynamic_array* aux = createDynamicArray();
-  Dynamic_array* chosen = createDynamicArray();
-  push(chosen, 0);
-  push(chosen, 0);
-  push(chosen, 0);
-  permutation(array, aux, 0, chosen);
-
-
-  return 0 ;
-}
-
-
